@@ -1,0 +1,12 @@
+.background {
+  margin: 0;
+  height: 100vh;
+  background-image: url('/assets/background-img.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+auth-register-form{
+  margin-right: 3.5rem;
+}
