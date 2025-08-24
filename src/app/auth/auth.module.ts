@@ -4,7 +4,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { AuthRoutingModule } from './auth-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { RegisterFormComponent } from './components/register-form/register-form.
   imports: [
     CommonModule,
     AuthRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }
