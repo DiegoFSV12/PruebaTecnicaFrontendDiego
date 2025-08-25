@@ -1,6 +1,6 @@
 export interface Client {
     bono:            string;
-    oldToken:        string;
+    newToken:        string;
     token:           string;
     Tipo_Documento:  string;
     Num_Documento:   string;

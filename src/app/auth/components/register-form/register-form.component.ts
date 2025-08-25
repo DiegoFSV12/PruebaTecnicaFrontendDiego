@@ -34,7 +34,7 @@ export class RegisterFormComponent implements OnInit{
 
     this.authService.generateToken()
     .subscribe(token => {
-      this.clientForm.get("oldToken")?.setValue(token.token);
+      this.clientForm.get("newToken")?.setValue(token.token);
       this.clientForm.get("token")?.setValue(token.token);
     })
   }
@@ -47,7 +47,7 @@ export class RegisterFormComponent implements OnInit{
         Nombres: new FormControl(''),       
         Apellidos: new FormControl(''),
         FechaNacimiento: new FormControl<string>(''),
-        oldToken: new FormControl(''),      
+        newToken: new FormControl(''),      
         token: new FormControl(''),        
   });
 

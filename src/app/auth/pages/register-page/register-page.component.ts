@@ -23,17 +23,20 @@ export class RegisterPageComponent {
         Nombres,
         Apellidos,
         FechaNacimiento,
-        oldToken,
+        newToken,
         token
       } = datos;
+      console.log(newToken);
+      console.log(token);
       this.authService.saveClient(datos).pipe(
         switchMap(res => {
           console.log(res.id);
           this.idCreated = res.id;
-          return this.authService.saveToken(oldToken, token, this.idCreated);
+          return this.authService.saveToken(token, newToken, this.idCreated);
         })
       ).subscribe(tokenRes => {
-        console.log('Token guardado:', tokenRes);
+        console.log('Token guardado en la base de datos');
+        alert(`Cliente registrado con exito con ID : ${tokenRes.id_cliente}`);
       });
 
     } 
