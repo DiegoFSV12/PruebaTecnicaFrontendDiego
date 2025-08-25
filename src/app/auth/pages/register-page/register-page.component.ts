@@ -28,6 +28,7 @@ export class RegisterPageComponent {
       } = datos;
       console.log(newToken);
       console.log(token);
+      console.log(bono);
       this.authService.saveClient(datos).pipe(
         switchMap(res => {
           console.log(res.id);

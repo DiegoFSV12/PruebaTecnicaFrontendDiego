@@ -21,24 +21,26 @@ export class RegisterFormComponent implements OnInit{
   constructor(
     private authService:AuthService,
   ){}
-
-  ngOnInit(): void {
-
+  
+  private loadToken(): void {
     this.clientForm.get('FechaNacimiento')?.valueChanges.subscribe(value => {
-    if (value) {
-      const fecha = new Date(value);
-      const fechaSQL = fecha.toISOString().split('T')[0]; // YYYY-MM-DD
-      this.clientForm.get('FechaNacimiento')?.setValue(fechaSQL, { emitEvent: false });
-    }
-  });
+      if (value) {
+        const fecha = new Date(value);
+        const fechaSQL = fecha.toISOString().split('T')[0]; // YYYY-MM-DD
+        this.clientForm.get('FechaNacimiento')?.setValue(fechaSQL, { emitEvent: false });
+      }
+    });
 
     this.authService.generateToken()
-    .subscribe(token => {
-      this.clientForm.get("newToken")?.setValue(token.token);
-      this.clientForm.get("token")?.setValue(token.token);
-    })
+      .subscribe(token => {
+        this.clientForm.get("newToken")?.setValue(token.token);
+        this.clientForm.get("token")?.setValue(token.token);
+      })
   }
-  
+
+  ngOnInit(): void {
+    this.loadToken();
+  }
 
   public clientForm = new FormGroup({     
         bono: new FormControl(this.bonos[this.bonoSeleccionado]),
@@ -52,12 +54,13 @@ export class RegisterFormComponent implements OnInit{
   });
 
   public mostrarFormulario(){
-    this.activarformulario1= false;
-    this.activarformulario2= true;
+    this.activarformulario1= !this.activarformulario1;
+    this.activarformulario2= !this.activarformulario2;
   }
 
   public seleccionarBono(bono:number){
     this.bonoSeleccionado = bono;
+    this.clientForm.get("bono")?.setValue(this.bonos[this.bonoSeleccionado]);
     console.log(this.bonos[this.bonoSeleccionado]);
   }
 
@@ -77,7 +80,10 @@ export class RegisterFormComponent implements OnInit{
         return;
       }
     }
-    this.sendClient.emit(this.clientForm.value as Client); 
+    this.sendClient.emit(this.clientForm.value as Client);
+    this.clientForm.reset(); 
+    this.loadToken();
+    this.mostrarFormulario();
   }
 }
 }
