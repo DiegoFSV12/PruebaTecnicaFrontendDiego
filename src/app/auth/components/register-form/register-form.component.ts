@@ -84,6 +84,7 @@ export class RegisterFormComponent implements OnInit{
     this.clientForm.reset(); 
     this.loadToken();
     this.mostrarFormulario();
+    this.clientForm.get("bono")?.setValue(this.bonos[this.bonoSeleccionado]);
   }
 }
 }

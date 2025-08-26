@@ -26,18 +26,23 @@ export class RegisterPageComponent {
         newToken,
         token
       } = datos;
-      console.log(newToken);
-      console.log(token);
-      console.log(bono);
+      console.log("Nuevo Token - "+newToken);
+      console.log("Token original - "+token);
+      console.log("Bono Seleccionado - "+bono);
       this.authService.saveClient(datos).pipe(
         switchMap(res => {
           console.log(res);
           this.idCreated = res.id;
           return this.authService.saveToken(token, newToken, this.idCreated);
         })
-      ).subscribe(tokenRes => {
-        console.log('Token guardado en la base de datos');
-        alert(`Cliente registrado con exito con ID : ${tokenRes.id_cliente}`);
+      ).subscribe({
+        next: (response) => {
+          alert('Cliente registrado correctamente. ID: ' + response.id_cliente);
+        },
+        error: (err) => {
+          console.error('Error al registrar cliente:', err);
+          alert('Ocurrió un error al registrar el cliente.');
+        }
       });
 
     } 

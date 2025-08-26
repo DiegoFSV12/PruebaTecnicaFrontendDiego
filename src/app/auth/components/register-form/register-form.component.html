@@ -83,13 +83,13 @@
         </div>
         <mat-form-field>
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="FechaNacimiento">
+            <input matInput [matDatepicker]="picker" formControlName="FechaNacimiento" required>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Token</mat-label>
-            <input type="text" matInput maxlength="8" formControlName="newToken">
+            <input type="text" matInput maxlength="8" formControlName="newToken" required>
         </mat-form-field>
         <button (click)="sendData()">Ingresar</button>
     </div>
