@@ -31,7 +31,7 @@ export class RegisterPageComponent {
       console.log(bono);
       this.authService.saveClient(datos).pipe(
         switchMap(res => {
-          console.log(res.id);
+          console.log(res);
           this.idCreated = res.id;
           return this.authService.saveToken(token, newToken, this.idCreated);
         })

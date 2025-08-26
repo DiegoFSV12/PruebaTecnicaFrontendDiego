@@ -1,4 +1,4 @@
-
+/*Aqui las variables solo seran las rutas (Se sube al repositori con fines de pruebas)*/
 export const environments = {
     generateToken: 'http://localhost:4000/tokens/generate',
     updateToken: 'http://localhost:4000/tokens/update',

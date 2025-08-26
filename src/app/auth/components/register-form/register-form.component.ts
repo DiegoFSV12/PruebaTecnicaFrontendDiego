@@ -76,7 +76,7 @@ export class RegisterFormComponent implements OnInit{
         edad--;
       }
       if (edad < 18) {
-        console.log("EL USUARIO ES MENOR DE EDAD");
+        alert("NO PUEDE REGISTRARSE SIENDO MENOR DE EDAD");
         return;
       }
     }
